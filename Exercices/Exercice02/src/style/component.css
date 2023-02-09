@@ -17,6 +17,10 @@ td{
   height: 35px;
 }
 
+.tableContact>tbody>tr>td:nth-child(odd){
+  text-align: center;
+}
+
 .tableContact>tbody>tr>td:nth-child(even){
   background-color: rgb(27, 27, 27);
 }
