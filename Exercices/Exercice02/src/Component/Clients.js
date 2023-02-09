@@ -23,7 +23,6 @@ import { Adresse } from "./Adresse.js"
 
 export function Clients (props){
   const {nom,prenom,telephone,statut,adresse} = props.client
-  console.log(props.keys)
   return(
   <table className="tableContact">
     <tbody>
