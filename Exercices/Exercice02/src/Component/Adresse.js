@@ -16,10 +16,10 @@
 
 export function Adresse (props){
   const {rue,ville,codePostal} = props.adresse;
-  const statut = props.statut
+  const statut = {}
   return(
     <>
-    <tr className={statut?"" :"red"}><td>rue : </td><td>{rue}</td><td>ville :</td><td> {ville}</td><td>code postal :</td><td>{codePostal}</td>{statut? "" : <td></td>}</tr> 
+    <tr className={statut?"" :"red"}><td>rue : </td><td>{rue}</td><td>ville :</td><td> {ville}</td><td>code postal :</td><td>{codePostal}</td><td></td></tr> 
     </>
   )
 }

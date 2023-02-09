@@ -13,7 +13,7 @@ export class Clients extends Component{
     return(
     <table className="tableContact">
       <tbody>
-        <tr className={statut? "" : "red"}><td>nom : </td><td>{nom}</td><td>prenom : </td><td>{prenom}</td><td>telephone :</td><td>{telephone}</td>{statut? "" : <td>Inactif</td>}</tr>
+        <tr className={statut? "" : "red"}><td>nom : </td><td>{nom}</td><td>prenom : </td><td>{prenom}</td><td>telephone :</td><td>{telephone}</td>{statut? <td>Actif</td> : <td>Inactif</td>}</tr>
         <Adresse adresse={adresse} statut={statut}></Adresse>
       </tbody>
   </table>
