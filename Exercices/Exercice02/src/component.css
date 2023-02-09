@@ -1,0 +1,34 @@
+.tableContact{
+  width: 80%;
+  margin: 35px auto;
+  border-radius: 5px;
+  overflow: hidden;
+  border-spacing: 0;
+  border: solid black 1px;
+  color: white;
+}
+
+.tableContact>tbody>tr>td{
+  border: solid black 1px;
+  border-collapse: collapse;
+}
+
+td{
+  height: 35px;
+}
+
+.tableContact>tbody>tr>td:nth-child(even){
+  background-color: rgb(27, 27, 27);
+}
+
+.tableContact>tbody>tr>td:nth-child(odd){
+  background-color: rgb(77, 77, 77);
+}
+
+.tableContact>tbody>tr.red>td:nth-child(odd){
+  background-color: rgb(177, 52, 52);
+}
+
+.tableContact>tbody>tr.red>td:nth-child(even){
+  background-color: rgba(141, 24, 24, 0.712);
+}
