@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Clients } from './Component/Clients';
-import './index.css';
-import './component.css';
+import './style/index.css';
+import './style/component.css';
 import reportWebVitals from './reportWebVitals';
 
 const listeClients = [{nom:"nom1",prenom:"prenom1",telephone:"telephone1",statut:true,adresse:{rue:"laRue",ville:"laVille",codePostal:"01234"}},{nom:"nom2",prenom:"prenom2",telephone:"telephone2",statut:false,adresse:{rue:"laRue",ville:"laVille",codePostal:"01234"}},{nom:"nom3",prenom:"prenom3",telephone:"telephone3",statut:true,adresse:{rue:"laRue",ville:"laVille",codePostal:"01234"}}]
