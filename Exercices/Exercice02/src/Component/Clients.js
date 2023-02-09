@@ -23,11 +23,12 @@ import { Adresse } from "./Adresse.js"
 
 export function Clients (props){
   const {nom,prenom,telephone,statut,adresse} = props.client
+  console.log(props.keys)
   return(
   <table className="tableContact">
     <tbody>
       <tr className={statut? "" : "red"}><td>nom : </td><td>{nom}</td><td>prenom : </td><td>{prenom}</td><td>telephone :</td><td>{telephone}</td>{statut? <td>Actif</td> : <td>Inactif</td>}</tr>
-      <Adresse adresse={adresse} statut={statut}></Adresse>
+      <Adresse adresse={adresse} statut={statut} changeStatut={props.changeStatut} cle={props.cle}></Adresse>
     </tbody>
 </table>
   )
