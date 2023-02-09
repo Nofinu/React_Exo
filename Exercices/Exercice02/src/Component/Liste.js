@@ -6,19 +6,19 @@ export class Liste extends Component {
         super(props)
         this.state = { clients : [{ 
             nom: "nom contact", 
-            prenom: "prenom contact", 
+            prenom: "prenom0", 
             telephone: "0123456789", 
             statut : true,
             adresse: { rue: "ma rue", ville: "ma ville", codePostal: "59200" }
         },{ 
-            nom: "nom0 contact", 
-            prenom: "pierre", 
+            nom: "nom contact", 
+            prenom: "prenom1", 
             telephone: "9123456789", 
             statut : false,
             adresse: { rue: "ma2 rue", ville: "ma ville1", codePostal: "59201" }
         },{ 
             nom: "nom1 contact", 
-            prenom: "théo", 
+            prenom: "prenom2", 
             telephone: "8123456789", 
             statut : true,
             adresse: { rue: "ma1 rue", ville: "ma ville1", codePostal: "59202" }
