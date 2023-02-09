@@ -10,18 +10,11 @@ export class Clients extends Component{
 
   render(){
     const {nom,prenom,telephone,statut,adresse} = this.props.client
-    let couleur = ""
-    if(statut){
-      couleur = ""
-    }
-    else{
-      couleur = "red"
-    }
     return(
     <table className="tableContact">
       <tbody>
-        <tr className={couleur}><td>nom : </td><td>{nom}</td><td>prenom : </td><td>{prenom}</td><td>telephone :</td><td>{telephone}</td></tr>
-        <Adresse adresse={adresse} couleur={couleur}></Adresse>
+        <tr className={statut? "" : "red"}><td>nom : </td><td>{nom}</td><td>prenom : </td><td>{prenom}</td><td>telephone :</td><td>{telephone}</td>{statut? "" : <td>Inactif</td>}</tr>
+        <Adresse adresse={adresse} statut={statut}></Adresse>
       </tbody>
   </table>
     )
