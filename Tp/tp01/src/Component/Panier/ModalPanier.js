@@ -1,5 +1,4 @@
 import { Component } from "react";
-import { DisplayPanier } from "./DisplayPanier";
 import { PanierItems } from "./PanierItems";
 
 
