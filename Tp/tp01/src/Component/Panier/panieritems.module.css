@@ -1,0 +1,29 @@
+.tableItemPanier{
+  margin-bottom: 10px;
+  border: solid rgba(0, 0, 0, 0.445) 1px;
+  border-radius: 5px;
+  width: 150%;
+}
+
+.btnSuprOne{
+  background-color: rgb(184, 119, 0);
+  color: white;
+  border: transparent;
+  border-radius: 5px;
+  height: 25px;
+  width: 25px;
+}
+
+.btnSuprAll{
+  background-color: rgb(145, 0, 0);
+  color: white;
+  border: transparent;
+  border-radius: 5px;
+  height: 25px;
+  width: 25px;
+}
+
+.textTitle{
+  text-align: center;
+  font-size: 25px;
+}

@@ -1,0 +1,40 @@
+.divListeItem{
+  border: solid black 1px;
+  width: 300px;
+  text-align: center;
+  padding: 5px;
+  margin-bottom: 5px;
+  border-radius: 10px;
+}
+
+.btnListeItem{
+  background-color: rgb(29, 121, 226);
+  border-radius: 5px;
+  width: 50px;
+  border: transparent;
+  padding: 10px;
+  color: white;
+  font-size: 15px;
+}
+.btnListeItem:hover{
+  background-color: rgb(25, 89, 161);
+}
+
+.hrListeItem{
+  margin: 0;
+}
+h1{
+  margin-bottom: 3px;
+  margin-top: 5px;
+}
+
+.tableListeItem{
+  width: 100%;
+}
+
+.centerText{
+  text-align: center;
+}
+.inputModal{
+  width: 50px;
+}

@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { ListeItems } from "./ListeProduits/ListeItems";
+import { ModalItems } from "./ListeProduits/ModalItems";
 import { DisplayPanier } from "./Panier/DisplayPanier";
 import { ModalPanier } from "./Panier/ModalPanier";
 
@@ -29,7 +30,8 @@ export class GlobalContainer extends Component{
             },
         ],
         panier:[],
-        statutModal : false
+        statutModal : false,
+        statutModalItemsFocus : ""
         }
     }
 
@@ -42,19 +44,19 @@ export class GlobalContainer extends Component{
         this.setState({...tmpStateprix})
     }
 
-    ajouterArticle=(id)=>{
+    ajouterArticle=(id,nbr=1)=>{
         let tmpState = {...this.state}
         let test = false
         tmpState.panier.forEach(article =>{
             if(id ===article.id){
-                article.quantite++
+                article.quantite+=nbr
                 test = true
             }
         })
         if(!test){
             tmpState.items.forEach(item =>{
                 if(id === item.id){
-                    tmpState.panier.push({...item,quantite : 1})
+                    tmpState.panier.push({...item,quantite : nbr})
                 }
             })  
         }
@@ -91,17 +93,16 @@ export class GlobalContainer extends Component{
     }
 
     gestionModal=()=>{
-        // let tmpState = {...this.state}
-        // tmpState.statutModal = !tmpState.statutModal
-        // this.setState({...tmpState})
         this.setState((state)=>({statutModal : !state.statutModal}))
     }
 
-    // closeModal=()=>{
-    //     let tmpState = {...this.state}
-    //     tmpState.statutModal = false
-    //     this.setState({...tmpState})
-    // }
+    gestionModalItemOpen=(id)=>{
+        this.setState({statutModalItemsFocus : id})
+    }
+    gestionModalItemClose=()=>{
+        this.setState({statutModalItemsFocus : ""})
+    }
+
 
 
     render(){  
@@ -112,13 +113,16 @@ export class GlobalContainer extends Component{
         return (
             <div className="globalContainer">
                 <div className="listeContainer">
-                    {this.state.items.map((item,index)=><ListeItems key={index} item={item} ajouterArticle={this.ajouterArticle}></ListeItems>)}
+                    {this.state.items.map((item,index)=><ListeItems key={index} item={item} gestionModalItemOpen={this.gestionModalItemOpen} ajouterArticle={this.ajouterArticle}></ListeItems>)}
                 </div>
                 <div className="panierContainer">
                     <DisplayPanier nbrArticle={nbrArticle} totalprix={this.state.totalPrix} gestionModal={this.gestionModal}></DisplayPanier>
                 </div>
                 <div className={this.state.statutModal?"on":"off"}>
                     <ModalPanier panier={this.state.panier} gestionModal={this.gestionModal} supprimerUnArticle={this.supprimerUnArticle} supprimerAllArticle={this.supprimerAllArticle} nbrArticle={nbrArticle} totalprix={this.state.totalPrix}></ModalPanier>
+                </div>
+                <div className={this.state.statutModalItemsFocus?"on":"off"}>
+                    <ModalItems items={this.state.items} id={this.state.statutModalItemsFocus} gestionModalItemClose={this.gestionModalItemClose} ajouterArticle={this.ajouterArticle}></ModalItems>
                 </div>
             </div>
             )

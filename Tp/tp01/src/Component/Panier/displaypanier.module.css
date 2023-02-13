@@ -1,0 +1,15 @@
+
+.btnAffichagePanier{
+  background-color: rgb(18, 146, 28);
+  color: white;
+  border: transparent;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 25px;
+  margin-top: 15px;
+}
+.btnAffichagePanier:hover{
+  background-color: rgb(15, 114, 23);
+  transform: translateY(-0.1rem);
+  box-shadow: 5px 3px 3px rgba(0, 0, 0, 0.637);
+}
