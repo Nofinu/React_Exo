@@ -113,7 +113,7 @@ export class GlobalContainer extends Component{
         return (
             <div className="globalContainer">
                 <div className="listeContainer">
-                    {this.state.items.map((item,index)=><ListeItems key={index} item={item} gestionModalItemOpen={this.gestionModalItemOpen} ajouterArticle={this.ajouterArticle}></ListeItems>)}
+                    {this.state.items.map((item)=><ListeItems key={item.id} item={item} gestionModalItemOpen={this.gestionModalItemOpen} ajouterArticle={this.ajouterArticle}></ListeItems>)}
                 </div>
                 <div className="panierContainer">
                     <DisplayPanier nbrArticle={nbrArticle} totalprix={this.state.totalPrix} gestionModal={this.gestionModal}></DisplayPanier>
