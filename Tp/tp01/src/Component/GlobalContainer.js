@@ -72,9 +72,10 @@ export class GlobalContainer extends Component{
     }
 
     gestionModal=()=>{
-        let tmpState = {...this.state}
-        tmpState.statutModal = !tmpState.statutModal
-        this.setState({...tmpState})
+        // let tmpState = {...this.state}
+        // tmpState.statutModal = !tmpState.statutModal
+        // this.setState({...tmpState})
+        this.setState((state)=>({statutModal : !state.statutModal}))
     }
 
     // closeModal=()=>{
