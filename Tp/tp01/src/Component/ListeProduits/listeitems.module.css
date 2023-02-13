@@ -6,6 +6,9 @@
   margin-bottom: 5px;
   border-radius: 10px;
 }
+.divListeItem:hover{
+  background-color: rgba(179, 179, 179, 0.397);
+}
 
 .btnListeItem{
   background-color: rgb(29, 121, 226);
