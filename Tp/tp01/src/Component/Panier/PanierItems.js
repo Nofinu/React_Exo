@@ -1,11 +1,11 @@
 
 export function PanierItems (props){
     const clickSuprOne=()=>{
-        props.supprimerUnArticle(props.index)
+        props.supprimerUnArticle(props.article.id)
     }
 
     const clickSuprAll=()=>{
-        props.supprimerAllArticle(props.index)
+        props.supprimerAllArticle(props.article.id)
     }
     const{titre,description,prix,quantite}=props.article
     return(

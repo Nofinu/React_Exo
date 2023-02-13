@@ -11,7 +11,7 @@ export function ModalPanier (props){
             <div className="modalContainer">
                 <button className="modalBtn" onClick={modalClick}>&times;</button>
                 <div>
-                    {props.items.map((article,index)=><PanierItems key={index} article={article} index={index} supprimerAllArticle={props.supprimerAllArticle} supprimerUnArticle={props.supprimerUnArticle}></PanierItems>)}
+                    {props.items.map((article,index)=><PanierItems key={index} article={article} supprimerAllArticle={props.supprimerAllArticle} supprimerUnArticle={props.supprimerUnArticle}></PanierItems>)}
                 </div>
                 <div className="panierModal">
                 <p className="affichageText">vous avez {nbrArticle} article dans votre panier</p>

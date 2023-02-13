@@ -32,11 +32,7 @@ export class GlobalContainer extends Component{
         }
     }
 
-    ajouterArticle=(index)=>{
-        let tmpState = {...this.state}
-        tmpState.items[index].quantite++
-        this.setState({...tmpState})
-
+    refreshTotalPrix=()=>{
         let tmpStateprix = {...this.state}
         tmpStateprix.totalPrix = 0
         tmpStateprix.items.forEach(item =>{
@@ -45,30 +41,40 @@ export class GlobalContainer extends Component{
         this.setState({...tmpStateprix})
     }
 
-    supprimerUnArticle=(index)=>{
+    ajouterArticle=(id)=>{
         let tmpState = {...this.state}
-        tmpState.items[index].quantite--
-        this.setState({...tmpState})
-
-        let tmpStateprix = {...this.state}
-        tmpStateprix.totalPrix = 0
-        tmpStateprix.items.forEach(item =>{
-            tmpStateprix.totalPrix+= item.quantite*item.prix
+        tmpState.items.forEach(item =>{
+            if(id ===item.id){
+                item.quantite++
+            }
         })
-        this.setState({...tmpStateprix})
+        this.setState({...tmpState})
+        this.refreshTotalPrix()
+        
     }
 
-    supprimerAllArticle=(index)=>{
+    supprimerUnArticle=(id)=>{
         let tmpState = {...this.state}
-        tmpState.items[index].quantite=0
+        tmpState.items.forEach(item =>{
+            if(id === item.id){
+                item.quantite--
+            }
+        })
         this.setState({...tmpState})
 
-        let tmpStateprix = {...this.state}
-        tmpStateprix.totalPrix = 0
-        tmpStateprix.items.forEach(item =>{
-            tmpStateprix.totalPrix+= item.quantite*item.prix
+        this.refreshTotalPrix()
+    }
+
+    supprimerAllArticle=(id)=>{
+        let tmpState = {...this.state}
+        tmpState.items.forEach(item =>{
+            if(id === item.id){
+                item.quantite=0
+            }
         })
-        this.setState({...tmpStateprix})
+        this.setState({...tmpState})
+
+        this.refreshTotalPrix()
     }
 
     gestionModal=()=>{
@@ -93,7 +99,7 @@ export class GlobalContainer extends Component{
         return (
             <div className="globalContainer">
                 <div className="listeContainer">
-                    {this.state.items.map((item,index)=><ListeItems key={index} item={item} index={index} ajouterArticle={this.ajouterArticle}></ListeItems>)}
+                    {this.state.items.map((item,index)=><ListeItems key={index} item={item} ajouterArticle={this.ajouterArticle}></ListeItems>)}
                 </div>
                 <div className="panierContainer">
                     <DisplayPanier nbrArticle={nbrArticle} totalprix={this.state.totalPrix} gestionModal={this.gestionModal}></DisplayPanier>
