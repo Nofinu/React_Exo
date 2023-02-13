@@ -1,24 +1,17 @@
-import { Component } from "react";
 import { PanierItems } from "./PanierItems";
 
-
-export class ModalPanier extends Component{
-    constructor(props){
-        super(props)
+export function ModalPanier (props){
+    const modalClick=()=>{
+        props.gestionModal()
     }
 
-    modalClick=()=>{
-        this.props.closeModal()
-    }
-
-    render(){
-        const nbrArticle =this.props.nbrArticle
-        const prix = this.props.totalprix
+        const nbrArticle =props.nbrArticle
+        const prix = props.totalprix
         return(
             <div className="modalContainer">
-                <button className="modalBtn" onClick={this.modalClick}>&times;</button>
+                <button className="modalBtn" onClick={modalClick}>&times;</button>
                 <div>
-                    {this.props.items.map((article,index)=><PanierItems key={index} article={article} index={index} supprimerAllArticle={this.props.supprimerAllArticle} supprimerUnArticle={this.props.supprimerUnArticle}></PanierItems>)}
+                    {props.items.map((article,index)=><PanierItems key={index} article={article} index={index} supprimerAllArticle={props.supprimerAllArticle} supprimerUnArticle={props.supprimerUnArticle}></PanierItems>)}
                 </div>
                 <div className="panierModal">
                 <p className="affichageText">vous avez {nbrArticle} article dans votre panier</p>
@@ -26,5 +19,5 @@ export class ModalPanier extends Component{
                 </div>
             </div>
         )
-    }
 }
+

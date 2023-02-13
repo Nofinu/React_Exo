@@ -71,17 +71,17 @@ export class GlobalContainer extends Component{
         this.setState({...tmpStateprix})
     }
 
-    openModal=()=>{
+    gestionModal=()=>{
         let tmpState = {...this.state}
-        tmpState.statutModal = true
+        tmpState.statutModal = !tmpState.statutModal
         this.setState({...tmpState})
     }
 
-    closeModal=()=>{
-        let tmpState = {...this.state}
-        tmpState.statutModal = false
-        this.setState({...tmpState})
-    }
+    // closeModal=()=>{
+    //     let tmpState = {...this.state}
+    //     tmpState.statutModal = false
+    //     this.setState({...tmpState})
+    // }
 
 
     render(){  
@@ -95,10 +95,10 @@ export class GlobalContainer extends Component{
                     {this.state.items.map((item,index)=><ListeItems key={index} item={item} index={index} ajouterArticle={this.ajouterArticle}></ListeItems>)}
                 </div>
                 <div className="panierContainer">
-                    <DisplayPanier nbrArticle={nbrArticle} totalprix={this.state.totalPrix} openModal={this.openModal}></DisplayPanier>
+                    <DisplayPanier nbrArticle={nbrArticle} totalprix={this.state.totalPrix} gestionModal={this.gestionModal}></DisplayPanier>
                 </div>
                 <div className={this.state.statutModal?"on":"off"}>
-                    <ModalPanier items={this.state.items} closeModal={this.closeModal} supprimerUnArticle={this.supprimerUnArticle} supprimerAllArticle={this.supprimerAllArticle} nbrArticle={nbrArticle} totalprix={this.state.totalPrix}></ModalPanier>
+                    <ModalPanier items={this.state.items} gestionModal={this.gestionModal} supprimerUnArticle={this.supprimerUnArticle} supprimerAllArticle={this.supprimerAllArticle} nbrArticle={nbrArticle} totalprix={this.state.totalPrix}></ModalPanier>
                 </div>
             </div>
             )

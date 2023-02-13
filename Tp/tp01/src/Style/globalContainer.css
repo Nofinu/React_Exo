@@ -1,6 +1,5 @@
 .globalContainer{
     height: 100%;
-    margin-top: 5%;
     margin-left: 5%;
     display: flex;
     flex-direction: row;
@@ -55,13 +54,14 @@
 .modalContainer{
     width: 80%;
     margin: auto;
-    margin-top: 10%;
+    margin-top: 5%;
     background-color: white;
     padding: 20px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
+    border-radius: 10px;
 }
 
 .modalBtn{
@@ -74,4 +74,17 @@
 
 .affichageText{
     font-size: 25px;
+}
+
+.btnAffichagePanier{
+    background-color: rgb(18, 146, 28);
+    color: white;
+    border: transparent;
+    border-radius: 5px;
+    padding: 5px;
+}
+.btnAffichagePanier:hover{
+    background-color: rgb(15, 114, 23);
+    transform: translateY(-0.1rem);
+    box-shadow: 5px 3px 3px rgba(0, 0, 0, 0.637);
 }
