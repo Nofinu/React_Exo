@@ -7,7 +7,7 @@ export function UserCard (props){
   }
   return(
     <>
-    <div className={props.contact.status?"blueDiv container":"redDiv container"}>
+    <div className="container">
       <div className={props.contact.status?"blue":"red"}></div>
       <div className="infoContainer">
         <h4><b>{props.contact.firstName} {props.contact.lastName}</b></h4>
@@ -21,3 +21,5 @@ export function UserCard (props){
     </>
   )
 }
+
+// {props.contact.status?"blueDiv container":"redDiv container"}
