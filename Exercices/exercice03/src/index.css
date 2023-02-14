@@ -1,3 +1,15 @@
+@media screen and (max-width: 1200px) {
+  .globalContainer{
+    justify-content: space-around;
+  }
+}
+@media screen and (min-width: 1201px) {
+  .globalContainer{
+    justify-content: space-between;
+  }
+}
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -13,16 +25,18 @@ code {
 }
 
 
+
+
 .red{
   background-color: rgba(190, 22, 22, 0.589);
   width: 100%;
-  height: 25vh;
+  height: 300px;
 }
 
 .blue{
   background-color: rgba(6, 146, 201, 0.705);
   width: 100%;
-  height: 25vh;
+  height: 300px;
 }
 
 button{
@@ -44,8 +58,7 @@ button{
 }
 
 .container{
-  width: 20%;
-  min-width: 300px;
+  width: 350px;
   margin-top: 20px;
   border: solid black 1px;
   border-radius: 5px;
@@ -61,10 +74,17 @@ button{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
 }
 
 
 h4{
   text-align: center;
+}
+
+.redDiv{
+  border: solid rgba(190, 22, 22, 0.589) 1px;
+}
+
+.blueDiv{
+  border: solid rgba(6, 146, 201, 0.705) 1px;
 }
