@@ -22,7 +22,7 @@ export class FormAjoutContact extends Component{
     e.preventDefault()
     const tmpContact = {...this.state.contact}
     this.props.AddContact(tmpContact)
-    this.setState({contact:{firstName:"",lastName:"",phone:"",status: true,address:{street:"",postCode:"",city:""}}})
+    // this.setState({contact:{firstName:"",lastName:"",phone:"",status: true,address:{street:"",postCode:"",city:""}}})
     e.target.reset()
   }
 
