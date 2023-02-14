@@ -14,25 +14,57 @@ code {
 
 
 .red{
-  background-color: rgba(129, 4, 4, 0.589);
+  background-color: rgba(190, 22, 22, 0.589);
+  width: 100%;
+  height: 25vh;
 }
 
 .blue{
-  background-color: rgb(6, 146, 201);
+  background-color: rgba(6, 146, 201, 0.705);
+  width: 100%;
+  height: 25vh;
 }
 
-table{
-  margin: 10px auto;
+button{
+  width: 25%;
+  height: 35px;
+  margin-left: 40%;
+  background-color: rgb(48, 48, 48);
+  border: transparent;
   border-radius: 5px;
-  overflow: hidden;
-  border-spacing: 0;
-  border: solid black 1px;
-  overflow: hidden;
-
+  color: white;
 }
 
-td{
-  padding: 5px;
+.redBtn{
+  background-color: rgba(190, 22, 22, 0.589);
+}
+
+.blueBtn{
+  background-color: rgba(6, 146, 201, 0.705);
+}
+
+.container{
+  width: 20%;
+  min-width: 300px;
+  margin-top: 20px;
   border: solid black 1px;
-  border-collapse: collapse;
+  border-radius: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.infoContainer{
+  padding: 5px;
+}
+
+.globalContainer{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+
+h4{
+  text-align: center;
 }

@@ -17,6 +17,12 @@ export class ContainerUserCard extends Component{
     })
   }
 
+  changeStatus=(index)=>{
+    const tmpState = {...this.state}
+    tmpState.data[index].status = !tmpState.data[index].status
+    this.setState({...tmpState})
+  }
+
   render(){
     console.log(this.state.data)
     return(
@@ -24,9 +30,9 @@ export class ContainerUserCard extends Component{
         {
           this.state.data.length === 0 ? <div>En chargement ...</div>
           :
-          <>
-            {this.state.data.map((e)=>(<UserCard key={e.id} contact={e}></UserCard>))}
-          </>
+          <div className="globalContainer">
+            {this.state.data.map((e)=>(<UserCard key={e.id} contact={e} changeStatus={this.changeStatus}></UserCard>))}
+          </div>
           
         }
       </div>
