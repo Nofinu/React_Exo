@@ -1,13 +1,13 @@
-@media screen and (max-width: 1200px) {
+/* @media screen and (max-width: 1850px) {
   .globalContainer{
-    justify-content: space-around;
+
   }
 }
-@media screen and (min-width: 1201px) {
+@media screen and (min-width: 1851px) {
   .globalContainer{
     justify-content: space-between;
   }
-}
+} */
 
 
 body {
@@ -43,10 +43,8 @@ button{
   width: 25%;
   height: 35px;
   margin-left: 40%;
-  background-color: rgb(48, 48, 48);
   border: transparent;
   border-radius: 5px;
-  color: white;
 }
 
 .redBtn{
@@ -59,11 +57,9 @@ button{
 
 .container{
   width: 350px;
-  margin-top: 20px;
+  margin: 20px 10px 0px 10px;
   border: solid black 1px;
   border-radius: 5px;
-  margin-left: 10px;
-  margin-right: 10px;
 }
 
 .infoContainer{
@@ -74,6 +70,9 @@ button{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  width: 80%;
+  margin: auto;
+  justify-content: space-around;
 }
 
 
@@ -87,4 +86,32 @@ h4{
 
 .blueDiv{
   border: solid rgba(6, 146, 201, 0.705) 1px;
+}
+
+
+
+form{
+  margin: 20px 10px 0px 10px;
+  width: 350px; 
+  display: flex;
+  flex-direction: column;
+  border: solid black 1px;
+  border-radius: 5px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+form>h3{
+  text-decoration: underline;
+}
+
+form>input{
+  margin: 10px auto;
+  width:90%;
+}
+
+form>button{
+  background-color: green;
+  color: white;
+  margin-bottom: 5px;
 }

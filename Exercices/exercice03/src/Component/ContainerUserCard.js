@@ -1,5 +1,6 @@
 import { Component } from "react";
-import { getInfoContactApi } from "../Services/data.services";
+import { getInfoContactApi, postContact } from "../Services/data.services";
+import { FormAjoutContact } from "./FormAjoutContact";
 import { UserCard } from "./UserCard";
 
 
@@ -23,8 +24,18 @@ export class ContainerUserCard extends Component{
     this.setState({...tmpState})
   }
 
+  AddContact=(contact)=>{
+    const tmpState = {...this.state}
+    let idContactAjout = {}
+    postContact(contact).then(res =>{
+      idContactAjout = {...res.data}
+      contact.id = idContactAjout.id
+      tmpState.data.push(contact)
+      this.setState({...tmpState})
+    })
+  }
+
   render(){
-    console.log(this.state.data)
     return(
       <div>
         {
@@ -32,6 +43,7 @@ export class ContainerUserCard extends Component{
           :
           <div className="globalContainer">
             {this.state.data.map((e)=>(<UserCard key={e.id} contact={e} changeStatus={this.changeStatus}></UserCard>))}
+            <FormAjoutContact AddContact={this.AddContact}></FormAjoutContact>
           </div>
           
         }
