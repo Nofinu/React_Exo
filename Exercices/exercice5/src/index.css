@@ -11,3 +11,118 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+.mainComponent{
+  background-color: rgb(22, 22, 22);
+  color: rgb(238, 236, 236);
+  width: 70%;
+  margin: 5% auto;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+h1{
+  width: 100%;
+  margin-right: 100%;
+}
+
+hr{
+  width: 100%;
+}
+
+.buttonContainer{
+  width: 28%;
+  margin: 30px 10px;
+}
+
+.buttonContainer>button{
+  width: 28%;
+  height: 40px;
+  font-size: 20px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+}
+
+.btnPlay{
+  border: transparent;
+  background-color: transparent;
+  color: rgb(12, 134, 12);
+  border-radius: 5px;
+  border:solid rgb(12, 134, 12) 1px ;
+  box-shadow: 3px 3px rgb(12, 134, 12);
+}
+.btnPlay:hover{
+  background-color: rgb(12, 134, 12,0.600);
+  color: white;
+}
+.btnPlay:active{
+  transform: translateY(2px);
+  box-shadow: 1px 1px rgb(12, 134, 12);
+}
+
+.btnPause{
+  border: transparent;
+  background-color: transparent;
+  color: rgb(14, 150, 168);
+  border-radius: 5px;
+  border: solid rgb(14, 150, 168) 1px;
+  box-shadow: 3px 3px rgb(14, 150, 168);
+}
+.btnPause:hover{
+  background-color: rgb(14, 150, 168,0.600);
+  color: white;
+}
+.btnPause:active{
+  transform: translateY(2px);
+  box-shadow: 1px 1px rgb(14, 150, 168);
+}
+
+.btnReset{
+  border: transparent;
+  background-color: transparent;
+  color: rgb(207, 207, 8);
+  border-radius: 5px;
+  border: solid rgb(207, 207, 8) 1px;
+  box-shadow: 3px 3px rgb(207, 207, 8);
+}
+.btnReset:hover{
+  background-color: rgba(207, 207, 8, 0.600);
+  color: white;
+}
+.btnReset:active{
+  transform: translateY(2px);
+  box-shadow: 1px 1px rgb(207, 207, 8);
+}
+
+
+
+.displayDiv{
+  margin-top: 15px;
+  width: 60%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.displayDiv>div{
+  height: 75px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 25px;
+}
+
+.displayDiv>div:nth-child(odd){
+  border: solid rgba(202, 172, 2, 0.815) 1px;
+  color: rgba(202, 172, 2, 0.815);
+}
+
+.displayDiv>div:nth-child(even){
+  border: solid rgba(7, 121, 173, 0.801) 1px;
+  color: rgba(7, 121, 173, 0.801);
+}
