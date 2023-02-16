@@ -20,8 +20,10 @@ export const MainComponent = () =>{
     <div className="mainComponent">
       <h1>Fizz Buzz</h1>
       <hr />
+      <div className="globalContainer">
       <DisplayContainer Value={compteur}/>
       <ButtonContainer minusBtnClasse={compteur===0? "disable":"btnActivate"} onClickPlusHandler={onClickPlusHandler} onClickMinusHandler={onClickMinusHandler}/>
     </div>
+      </div>
   )
 }

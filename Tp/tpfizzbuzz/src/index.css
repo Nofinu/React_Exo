@@ -29,7 +29,14 @@ h1{
   border-radius: 10px;
 }
 
+.globalContainer{
+  position: relative;
+  width: 500px;
+  height: 500px;
+}
+
 .displayContainer{
+  position: absolute;
   width: 500px;
   height: 500px;
   background-color: rgb(18, 110, 163);
@@ -64,14 +71,14 @@ h1{
 .btnContainer{
   display: flex;
   justify-content: space-evenly;
-  position: absolute;
+  position: relative;
   width: inherit;
-  top:500px;
+  top: 350px;
 }
 
 .btnActivate{
-  height: 80px;
-  width: 80px;
+  height: 120px;
+  width: 120px;
   border-radius: 100%;
   border: transparent;
   background-color: rgb(14, 63, 126);
@@ -87,8 +94,8 @@ h1{
   margin-right: 230px;
 }
 .disable{
-  height: 80px;
-  width: 80px;
+  height: 120px;
+  width: 120px;
   border-radius: 100%;
   border: transparent;
   color: white;
