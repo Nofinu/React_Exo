@@ -18,7 +18,7 @@ export const MainComponent = () =>{
 
   return(
     <div className="mainComponent">
-      <h1>exo Compteur</h1>
+      <h1>Fizz Buzz</h1>
       <hr />
       <DisplayContainer Value={compteur}/>
       <ButtonContainer minusBtnClasse={compteur===0? "disable":"btnActivate"} onClickPlusHandler={onClickPlusHandler} onClickMinusHandler={onClickMinusHandler}/>
