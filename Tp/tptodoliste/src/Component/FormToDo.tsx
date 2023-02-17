@@ -14,7 +14,9 @@ export const FormToDo = (props:Props) =>{
 
   const onSubmitHandler = (e : FormEvent<HTMLFormElement>) =>{
     e.preventDefault()
-    const Todo = new TodoItem(title.current.value,description.current.value,dueDate.current.value.split("-").reverse())
+    let tableDate = dueDate.current.value.split("-")
+    // let dateNumber = new Date(+tableDate[0],+tableDate[1],+tableDate[2]).getTime()
+    const Todo = new TodoItem(title.current.value,description.current.value,tableDate)
     props.reciveSubmitForm(Todo)
   }
 

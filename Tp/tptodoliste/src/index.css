@@ -87,13 +87,15 @@ code {
   border: solid rgb(236, 235, 235) 1px;
   border-radius: 10px;
   margin-top: 10px;
+  padding: 10px;
 }
 
-.itemToDo>button{
+.itemToDo>div>button{
   width: 80px;
   height: 30px;
   border: transparent;
   border-radius: 10px;
+  color: rgb(243, 243, 243);
 }
 
 .yellow{
@@ -106,4 +108,15 @@ code {
 
 .red{
   background-color: rgb(189, 12, 12);
+}
+
+.headerItemToDo{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.headerItemToDo>p{
+  padding-top: 4px;
+  border-radius: 10px;
 }

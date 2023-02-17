@@ -26,6 +26,19 @@ export const MainComponent = () =>{
       setListeToDo([...tmpListeToDo,Todo].sort((a,b)=> a.getId - b.getId))
     }
   }
+
+  const suprToDo = (id:number):void =>{
+    let Todo= listeToDo.find(elem => elem.getId === id)
+    let tmpListeToDo = listeToDo.filter(elem => {
+      if(elem === Todo)
+        return
+      else
+        return elem
+    })
+    if(Todo){
+      setListeToDo([...tmpListeToDo].sort((a,b)=> a.getId - b.getId))
+    }
+  }
   
 
   return(
@@ -33,7 +46,7 @@ export const MainComponent = () =>{
       <FormToDo reciveSubmitForm={reciveSubmitForm}/>
       <div className='displayToDo'>
         {
-        listeToDo.length !==0 &&  listeToDo.map((elem : TodoItem) => <ComponentToDo key={elem.getId} element={elem} changeIsDone={changeIsDone}/>)
+        listeToDo.length !==0 &&  listeToDo.map((elem : TodoItem) => <ComponentToDo key={elem.getId} element={elem} changeIsDone={changeIsDone} suprToDo={suprToDo} />)
         }
       </div>
     </div>
