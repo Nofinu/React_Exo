@@ -62,7 +62,7 @@ const FormInput =(props)=>{
           <label htmlFor="avatar">Avatar :</label>
           <input type="text" id="avatar" ref={avatarFormInputRef}  required/>
           <div className='divSendModal'>
-            <button>Envoyer</button>
+          <button className=' fa-solid fa-paper-plane'></button>
           </div>
         </form>
   )

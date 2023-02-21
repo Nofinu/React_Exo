@@ -60,7 +60,7 @@ const FormModif =(props)=>{
           <label htmlFor="avatar">Avatar :</label>
           <input type="text" id="avatar" ref={avatarFormInputRef} defaultValue={props.contactModif.avatar} required/>
           <div className='divSendModal'>
-            <button>Envoyer</button>
+            <button className=' fa-solid fa-paper-plane'></button>
           </div>
         </form>
   )

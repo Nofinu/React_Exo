@@ -83,7 +83,7 @@ const App=()=> {
               throw new Error ('oups il a eu une erreure')
             }
             const donnee = await reponse.json()
-            setContactListe([...contactListe,{id:donnee.name,...contact}].sort((a,b)=>a.nom-b.nom))
+            setContactListe( [...contactListe,{id:donnee.name,...contact}].sort((a,b)=>a.nom-b.nom))
           }
           setModalVisibleForm(false)
         }
@@ -113,7 +113,6 @@ const App=()=> {
             if(!reponse.ok){
               throw new Error('oups il a eu une erreure')
             }
-            // const donnee = await reponse.json()
             setContactListe([...contactListe.filter(contact => contact!==contactCible),contactModifie].sort((a,b)=>a.nom-b.nom))
           }
           catch(error){
@@ -197,6 +196,10 @@ const App=()=> {
     setContactModif(contactListe.find(contact=>contact.id === id))
   }
 
+  const deconection=()=>{
+    localStorage.setItem('token', "")
+    setIsLogged(false)
+  }
 
   //useEffect
   useEffect(()=>{
@@ -235,8 +238,11 @@ const App=()=> {
       <header className="App-header">
         <span>Liste de contacts</span>
         <div>
-          <button onClick={openModalLogin}>Connection</button>
-          <button onClick={openModalLogin}>Enregistrer</button>
+          {
+            isLogged ? <button onClick={deconection}>Deconection</button> :<><button onClick={openModalLogin}>Connection</button><button onClick={openModalLogin}>Enregistrer</button></>
+          }
+          
+          
         </div>
       </header>
       {

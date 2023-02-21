@@ -16,17 +16,6 @@ hr{
   border: transparent;
   border-radius: 10px;
 }
-.age{
-  -moz-appearance: textfield;
-}
-.divSendModal>div>button{
-  width: 30%;
-  margin-top: 7px;
-  height: 30px;
-  border: transparent;
-  border-radius: 10px;
-}
-
 
 #headerModal{
   display: flex;
@@ -51,11 +40,27 @@ hr{
   margin-top: 15px;
 }
 
+.divSendModal{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
 .divSendModal>button{
-  height: 30px;
+  height: 40px;
   margin-top: 15px;
-  width: 20%;
+  width: 70px;
   max-width: 150px;
+  font-size: 30px;
+  background-color: rgb(1, 102, 1);
+  border-radius: 5px;
+  border: transparent;
+  color: white;
+}
+.divSendModal>button:hover{
+  background-color: rgb(1, 71, 1);
 }
 
 #divbtnModalLogin{
