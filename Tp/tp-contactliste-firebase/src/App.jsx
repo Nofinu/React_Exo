@@ -172,7 +172,6 @@ const App=()=> {
     const refreshToken= async ()=>{
       const refreshToken = localStorage.getItem('refreshToken')
       if(refreshToken){
-        console.log(refreshToken)
         try{
           const URL = `https://securetoken.googleapis.com/v1/token?key=${API_KEY}`
           const reponse = await fetch(URL,{
@@ -185,7 +184,6 @@ const App=()=> {
           if(!reponse.ok){
             throw new Error('oups il a eu une erreure')
           }
-
           const data = await reponse.json()
           localStorage.setItem('token',data.id_token)
           setToken(data.id_token)
