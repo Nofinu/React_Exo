@@ -23,8 +23,12 @@ hr{
   align-items: center;
   color: white;
 }
-
-
+#headerModal>button{
+width: 20px;
+height: 20px;
+border-radius: 100%;
+border: transparent;
+}
 
 #formModalInput{
   display: flex;
@@ -33,8 +37,11 @@ hr{
 }
 
 #formModalInput>input{
-  width: 60%;
+  width: 75%;
   margin-top: 5px;
+    height: 30px;
+  border: transparent;
+  border-radius: 10px;
 }
 #formModalInput>label{
   margin-top: 15px;
@@ -68,6 +75,16 @@ hr{
   display: flex;
   justify-content: flex-end;
 } 
+#divbtnModalLogin>button{
+  height: 35px;
+  background-color: rgb(1, 99, 1);
+  border: transparent;
+  border-radius: 5px;
+  color: white;
+}
+#divbtnModalLogin>button:hover{
+  background-color: rgb(1, 65, 1);
+}
 
 .headerModal{
   display: flex;
@@ -81,3 +98,4 @@ hr{
   border-radius: 100%;
   border: transparent;
 }
+

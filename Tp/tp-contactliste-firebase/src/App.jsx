@@ -21,6 +21,7 @@ const App=()=> {
   const [modalVisibleForm, setModalVisibleForm] = useState(false)
   const [contactModif,setContactModif]=useState({})
   const [ismodif,setIsmodif]=useState(false)
+  const [tokenG,setToken]=useState("")
 
   const emailRef = useRef()
   const passwordRef =useRef()
@@ -56,6 +57,7 @@ const App=()=> {
         const data = await response.json()
         
         localStorage.setItem('token', data.idToken)
+        localStorage.setItem('refreshToken',data.refreshToken)
   
         emailRef.current.value = ""
         passwordRef.current.value = ""
@@ -167,6 +169,34 @@ const App=()=> {
       }
     }
 
+    const refreshToken= async ()=>{
+      const refreshToken = localStorage.getItem('refreshToken')
+      if(refreshToken){
+        console.log(refreshToken)
+        try{
+          const URL = `https://securetoken.googleapis.com/v1/token?key=${API_KEY}`
+          const reponse = await fetch(URL,{
+            method:"POST",
+            headers:{
+              "Content-Type":"application/x-www-form-urlencoded"
+            },
+            body:`grant_type=refresh_token&refresh_token=${refreshToken}`
+          })
+          if(!reponse.ok){
+            throw new Error('oups il a eu une erreure')
+          }
+
+          const data = await reponse.json()
+          localStorage.setItem('token',data.id_token)
+          setToken(data.id_token)
+          localStorage.setItem('refresh_token',data.refresh_token)
+        }
+        catch(error){
+          console.error(error.message)
+        }
+      }
+    }
+
 
 // fonction de gestion du modal Login
   const closeModal =()=>{
@@ -203,8 +233,20 @@ const App=()=> {
 
   //useEffect
   useEffect(()=>{
+    let montimer =undefined
     refreshContact()
-  },[])
+    if(isLogged){
+      montimer = setTimeout(()=>{
+        refreshToken()
+      },600000)
+    }
+    return()=>{
+      if(montimer){
+        clearTimeout(montimer)
+        montimer=undefined
+      }
+    }
+  },[tokenG,isLogged])
 
 
   return (
@@ -213,7 +255,7 @@ const App=()=> {
       modalVisibleInput && createPortal(<Modal closeModal={closeModal}>
         <div id="headerModal">
           <h2>{isLogging? "Connection":"Enregistrement"}</h2>
-          <button onClick={closeModal}>&times;</button>
+          <button className="fa-sharp fa-solid fa-xmark" onClick={closeModal}></button>
         </div>
         <form id="formModalInput" onSubmit={submitFormHandler}>
           <label htmlFor="EmailInput">Email :</label>
