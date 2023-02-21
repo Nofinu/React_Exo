@@ -1,0 +1,78 @@
+hr{
+  width: 100%;
+}
+
+#formInput{
+  display: flex;
+  flex-direction: column;
+  padding-inline: 50px;
+  color: white;
+}
+
+#formInput>input{
+  margin-top: 7px;
+  margin-bottom: 15px;
+  height: 30px;
+  border: transparent;
+  border-radius: 10px;
+}
+.age{
+  -moz-appearance: textfield;
+}
+.divSendModal>div>button{
+  width: 30%;
+  margin-top: 7px;
+  height: 30px;
+  border: transparent;
+  border-radius: 10px;
+}
+
+
+#headerModal{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+
+
+#formModalInput{
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+#formModalInput>input{
+  width: 60%;
+  margin-top: 5px;
+}
+#formModalInput>label{
+  margin-top: 15px;
+}
+
+.divSendModal>button{
+  height: 30px;
+  margin-top: 15px;
+  width: 20%;
+  max-width: 150px;
+}
+
+#divbtnModalLogin{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+} 
+
+.headerModal{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.headerModal>button{
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  border: transparent;
+}

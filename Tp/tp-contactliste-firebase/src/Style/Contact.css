@@ -1,0 +1,82 @@
+
+
+#contactContainer{
+  width: 70%;
+  background-color: rgb(19, 18, 18);
+  margin: 20px auto;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+#headerContactListe{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+#headerContactListe>button{
+  border: transparent;
+  border-radius: 5px;
+  background-color: green;
+  color: white;
+  height: 30px;
+}
+#headerContactListe>button:hover{
+  background-color: rgb(1, 92, 1);
+}
+
+
+
+.divContact{
+  display: flex;
+  flex-direction: row;
+  border: solid rgba(9, 148, 158, 0.712);
+  border-radius: 5px;
+  margin-top: 5px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.containerContact>img{
+  border-radius: 100%;
+  height: 150px;
+  aspect-ratio: 1 / 1;
+  margin: 0px 20px 0px 20px;
+}
+
+.divContact>div>button{
+  border: transparent;
+  border-radius: 5px;
+  height: 40px;
+  width: 40px;
+  margin-right: 10px;
+  color: white;
+  font-size: 25px;
+}
+.divContact>div>button:nth-child(even){
+  background-color: rgb(155, 1, 1);
+}
+.divContact>div>button:nth-child(even):hover{
+  background-color: rgb(121, 1, 1);
+}
+.divContact>div>button:nth-child(odd){
+  background-color: rgb(177, 145, 3);
+}
+.divContact>div>button:nth-child(odd):hover{
+  background-color: rgb(121, 99, 1);
+}
+
+.trait{
+  width: 2px;
+  height: 150px;
+  background-color: rgb(185, 185, 185);
+  margin-right: 20px;
+}
+
+.containerContact{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}

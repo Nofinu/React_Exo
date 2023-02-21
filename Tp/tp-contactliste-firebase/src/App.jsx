@@ -1,20 +1,31 @@
-import './App.css';
+import './Style/App.css';
 import {createPortal} from "react-dom"
-import {useRef, useState} from "react"
+import {useEffect, useRef, useState} from "react"
 import { Modal } from './Component/Shared/Modal';
 import { API_KEY } from './ApiKey';
 import { ContactListe } from './Component/ContactListe';
+import './Style/Form.css'
+import FormInput from './Component/FormInput';
+import FormModif from './Component/FormModif';
 
 const App=()=> {
 
+  //url de la base de donnée
+  const URL_DB="https://contactliste-firebaze-default-rtdb.europe-west1.firebasedatabase.app/"
+
   //creation des Hooks
-  const [modalVisible, setModalVisible] = useState(false)
+  const [modalVisibleInput, setModalVisibleInput] = useState(false)
   const [isLogging, setIsLogging] = useState(false)
   const [isLogged, setIsLogged] = useState(false)
   const [contactListe,setContactListe] = useState([])
+  const [modalVisibleForm, setModalVisibleForm] = useState(false)
+  const [contactModif,setContactModif]=useState({})
+  const [ismodif,setIsmodif]=useState(false)
 
   const emailRef = useRef()
   const passwordRef =useRef()
+
+
 
 //fonction de Connection/enregistrement
   const submitFormHandler = async (event) => {
@@ -50,20 +61,122 @@ const App=()=> {
         passwordRef.current.value = ""
   
         setIsLogged(true)
-        setModalVisible(false)
+        setModalVisibleInput(false)
       } catch (error) {
         console.error(error.message);
       }
     }
 
+    // gestion de l'envois envois des info contact
+    const onSubmitModalInput= async (contact)=>{
+        try{
+          const token = localStorage.getItem('token')
+          if(token){
+            const reponse = await fetch(`${URL_DB}contact.json?auth=${token}`,{
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body : JSON.stringify(contact)
+            })
+            if(!reponse.ok){
+              throw new Error ('oups il a eu une erreure')
+            }
+            const donnee = await reponse.json()
+            setContactListe([...contactListe,{id:donnee.name,...contact}].sort((a,b)=>a.nom-b.nom))
+          }
+          setModalVisibleForm(false)
+        }
+        catch (error){
+          console.error(error.message)
+        }
+      }
 
-// fonction de gestion du modal
+    const modifContact= async (id,contactModifie)=>{
+      console.log(id)
+      const contactCible = contactListe.find(contact=>contact.id === id)
+      console.log(contactCible)
+      if(contactCible){
+        console.log("modifcontact")
+        const token=localStorage.getItem('token')
+        if(token){
+          try{
+            
+            const reponse = await fetch(`${URL_DB}contact/${id}.json?auth=${token}`,{
+              method:"PATCH",
+              headers:{
+                "Content-Type":"application/json"
+              },
+              body: JSON.stringify(contactModifie)
+            })
+
+            if(!reponse.ok){
+              throw new Error('oups il a eu une erreure')
+            }
+            // const donnee = await reponse.json()
+            setContactListe([...contactListe.filter(contact => contact!==contactCible),contactModifie].sort((a,b)=>a.nom-b.nom))
+          }
+          catch(error){
+            console.error(error.message)
+          }
+        }
+        setModalVisibleForm(false)
+        setIsmodif(false)
+        setContactModif({})
+      }
+    }
+
+    const SuprContact= async (id)=>{
+      // eslint-disable-next-line no-restricted-globals
+      if(confirm("etes vous sur ?")){
+        const contactCible = contactListe.find(contact=>contact.id === id)
+        if(contactCible){
+          try{
+            const token = localStorage.getItem('token')
+            if(token){
+              const reponse = await fetch(`${URL_DB}contact/${id}.json?auth=${token}`,{
+                method:"DELETE"
+              })
+              if(!reponse.ok){
+                throw new Error('oups il a eu une erreure')
+              }
+              setContactListe([...contactListe.filter(contact=>contact !== contactCible)].sort((a,b)=>a.nom-b.nom))
+            }
+          }
+          catch(error){
+            console.error(error.message)
+          }
+        }
+      }
+    }
+
+    const refreshContact= async ()=>{
+      try{
+        const reponse = await fetch(`${URL_DB}contact.json`)
+        if(!reponse.ok){
+          throw new Error ('oups il a eu une erreure')
+        }
+        const donnee = await reponse.json()
+        let tmpContactListe=[]
+        for(let key in donnee){
+          tmpContactListe.push({id:key,...donnee[key]})
+        }
+        setContactListe(tmpContactListe.sort((a,b)=>a.nom-b.nom))
+      }
+      catch (error){
+        console.error(error.message)
+      }
+    }
+
+
+// fonction de gestion du modal Login
   const closeModal =()=>{
-    setModalVisible(false)
+    setModalVisibleInput(false)
+    setModalVisibleForm(false)
   }
 
   const openModalLogin=(e)=>{
-    setModalVisible(true)
+    setModalVisibleInput(true)
     if(e.target.innerText === "Connection"){
       setIsLogging(true)
     }
@@ -72,12 +185,29 @@ const App=()=> {
     }
   }
 
+  // fonction de gestion du modal AjoutContact
+
+  const openModalForm=()=>{
+    setModalVisibleForm(true)
+  }
+  const openModalFormModif=(id)=>{
+    console.log(id)
+    setModalVisibleForm(true)
+    setIsmodif(true)
+    setContactModif(contactListe.find(contact=>contact.id === id))
+  }
+
+
+  //useEffect
+  useEffect(()=>{
+    refreshContact()
+  },[])
 
 
   return (
     <>
     {
-      modalVisible && createPortal(<Modal closeModal={closeModal}>
+      modalVisibleInput && createPortal(<Modal closeModal={closeModal}>
         <div id="headerModal">
           <h2>{isLogging? "Connection":"Enregistrement"}</h2>
           <button onClick={closeModal}>&times;</button>
@@ -93,6 +223,14 @@ const App=()=> {
         </form>
       </Modal>,document.getElementById("modal-root"))
     }
+    {
+      modalVisibleForm && createPortal(<Modal closeModal={closeModal}>
+        {
+          ismodif ? <FormModif closeModal={closeModal} modifContact={modifContact} contactModif={contactModif} />:<FormInput closeModal={closeModal} onSubmitModalInput={onSubmitModalInput}/>
+        }
+        
+      </Modal>,document.getElementById("modal-root"))
+    }
     <div className="App">
       <header className="App-header">
         <span>Liste de contacts</span>
@@ -102,7 +240,7 @@ const App=()=> {
         </div>
       </header>
       {
-        isLogged && <ContactListe contactListe={contactListe}/>
+        isLogged && <ContactListe SuprContact={SuprContact} openModalForm={openModalForm} openModalFormModif={openModalFormModif} contactListe={contactListe}/>
       }
     </div>
     </>
@@ -110,3 +248,6 @@ const App=()=> {
 }
 
 export default App;
+
+
+// .sort((a,b)=>a.nom-b.nom)
