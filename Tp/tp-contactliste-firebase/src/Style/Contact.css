@@ -20,7 +20,9 @@
   border-radius: 5px;
   background-color: green;
   color: white;
-  height: 30px;
+  height: 40px;
+  font-size: 35px;
+  margin-right: 25px;
 }
 #headerContactListe>button:hover{
   background-color: rgb(1, 92, 1);
