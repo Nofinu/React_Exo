@@ -6,8 +6,7 @@ export const ConstactItem = (props)=>{
         <img src={props.contact.avatar} alt="profilPic" />
         <div className="trait"></div>
         <ul>
-          <li>{props.contact.nom}</li>
-          <li>{props.contact.prenom}</li>
+          <li><b>{props.contact.nom} {props.contact.prenom}</b></li>
           <li>{props.contact.dateNaissance}</li>
           <li>{props.contact.age}</li>
           <li>{props.contact.email}</li>

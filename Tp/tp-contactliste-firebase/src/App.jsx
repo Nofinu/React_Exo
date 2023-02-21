@@ -224,7 +224,7 @@ const App=()=> {
     setContactModif(contactListe.find(contact=>contact.id === id))
   }
 
-  const deconection=()=>{
+  const deconnexion=()=>{
     localStorage.setItem('token', "")
     setIsLogged(false)
   }
@@ -279,7 +279,7 @@ const App=()=> {
         <span>Liste de contacts</span>
         <div>
           {
-            isLogged ? <button onClick={deconection}>Deconection</button> :<><button onClick={openModalLogin}>Connection</button><button onClick={openModalLogin}>Enregistrer</button></>
+            isLogged ? <button onClick={deconnexion}>deconnexion</button> :<><button onClick={openModalLogin}>Connection</button><button onClick={openModalLogin}>Enregistrer</button></>
           }
           
           
