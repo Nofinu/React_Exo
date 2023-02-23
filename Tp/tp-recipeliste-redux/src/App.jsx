@@ -5,7 +5,8 @@ import { ModalComponent } from './Component/Shared/ModalComponent';
 import {API_KEY} from "./API_KEY.js"
 import { RecipeContainerComponent } from './Component/RecipeContainer/RecipeContainerComponent';
 import { useDispatch, useSelector } from 'react-redux';
-import { setIngredientsAction, setIsLoggedAction } from './Component/RecipeList/RecipeListSlice';
+import { suprRecipesList, setRecipesAction, addRecipeAction, setIngredientsAction, setIsLoggedAction, editRecipesList } from './Component/RecipeList/RecipeListSlice';
+import { FormComponent } from './Component/FormComponent/FormComponent';
 
 function App() {
 
@@ -13,12 +14,16 @@ function App() {
   const URL_DB="https://listerecette-redux-default-rtdb.europe-west1.firebasedatabase.app/"
 
   const isLogged = useSelector(state => state.recipeList.isLogged)
+  const recipes = useSelector(state =>state.recipeList.recipes)
 
   const [isLoggin,setIsLoggin]=useState(false)
   const [modalLoginStatus,setModalLoginStatus]=useState(false)
+  const [modalAddStatus,setModalAddStatus]=useState(false)
+  const [typeOfModalAdd,setTypeOfModalAdd]=useState("")
 
   const passwordRef = useRef()
   const emailRef = useRef()
+  const buttonref = useRef()
 
 
   // const initingredient= async()=>{
@@ -55,22 +60,21 @@ function App() {
       const data = await reponse.json()
   
       let tmpIngredients=[]
-
       for(let key in data){
         data[key].forEach(element => {
           tmpIngredients.push(element)
         });
       }
-
       dispatch(setIngredientsAction(tmpIngredients))
     }
+
     catch(error){
       console.error(error.message);
     }
   }
 
-const OonSubmitFormInputHandler= async (e)=>{
 
+const onSubmitFormInputHandler= async (e)=>{
   e.preventDefault()
   let BASE_URL = ""
   if (isLoggin){
@@ -111,9 +115,111 @@ const OonSubmitFormInputHandler= async (e)=>{
   }
 }
 
+const AddRecipes = async(recipe)=>{
+  try{
+    const token = localStorage.getItem('token')
+    if(token){
+      const response = await fetch(`${URL_DB}recipes.json?auth=${token}`,{
+        method:"POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body : JSON.stringify(recipe)
+        })
+      if(!response.ok){
+        throw new Error(`il y a eu un probleme lors de l'ajout de ${recipe}`)
+      }
+      const data = await response.json()
+      const recipeAdd = {id:data.name,...recipe}
+      dispatch(addRecipeAction(recipeAdd))
+      closeModal()
+    }
+  }
+  catch(error){
+    console.error(error.message);
+  }
+}
+
+const editRecipe = async (id,recipeEdit)=>{
+  const recipeCible = recipes.find(recipe=>recipe.id === id)
+  if(recipeCible){
+    const token = localStorage.getItem('token')
+    if(token){
+      try{
+        const response = await fetch(`${URL_DB}recipes/${id}.json?auth=${token}`,{
+          method:"PATCH",
+          headers:{
+            "Content-Type":"application/json"
+          },
+          body:JSON.stringify(recipeEdit)
+        })
+        if(!response.ok){
+          throw new Error(`il a eu une erreure lors de la modifictaion de ${id}` )
+        }
+        const tmpRecipes = [...recipes.filter(recipe => recipe!==recipeCible),recipeEdit]
+        dispatch(editRecipesList(tmpRecipes))
+        closeModal()
+      }
+      catch(error){
+        console.error(error.message);
+      } 
+    }
+  }
+}
+
+const suprRecipe= async (id)=>{
+  if(window.confirm("etes vous sur de vouloir suprimer la recette ?")){
+    const recipeCible = recipes.find(recipe=>recipe.id === id)
+    if(recipeCible){
+      try{
+        const token =localStorage.getItem('token')
+        if(token){
+          const reponse = await fetch(`${URL_DB}recipes/${id}.json?auth=${token}`,{
+            method:"DELETE"
+          })
+          if(!reponse.ok){
+            throw new Error('il y a eu une erreure lors de la supression de la recette')
+          }
+        }
+        const tmpRecipes = [...recipes.filter(recipe => recipe!==recipeCible)]
+        dispatch(suprRecipesList(tmpRecipes))
+        closeModal()
+      }
+      catch(error){
+        console.error(error.message);
+      }
+    }
+  }
+}
+
+const refreshRecipes=async()=>{
+  try{
+    const reponse = await fetch(`${URL_DB}recipes.json`)
+
+    if(!reponse.ok){
+      throw new Error('Un probleme est survenu lors de la recuperation de la liste des ingredients')
+    }
+
+    const data = await reponse.json()
+
+    let tmpRecipes=[]
+    for(let key in data){
+      tmpRecipes.push({id:key,...data[key]})
+      };
+    dispatch(setRecipesAction(tmpRecipes))
+    }
+    catch(error){
+      console.error(error.message);
+    }
+  }
+  
 
 
 
+const openModalAddHandler=(type)=>{
+  setModalAddStatus(true)
+  setTypeOfModalAdd(type)
+}
 
   const modalLoginHandler=(entry="")=>{
     if(entry === "login"){
@@ -127,6 +233,7 @@ const OonSubmitFormInputHandler= async (e)=>{
 
   const closeModal=()=>{
     setModalLoginStatus(false)
+    setModalAddStatus(false)
   }
 
   const LogOutHandler =()=>{
@@ -137,26 +244,34 @@ const OonSubmitFormInputHandler= async (e)=>{
 
   useEffect(()=>{
     refreshIngredients()
+    refreshRecipes()
   },[])
 
   return (
     <>
       {
         modalLoginStatus && createPortal(<ModalComponent closeModal={closeModal}>
-            <form className='FormInput' onSubmit={OonSubmitFormInputHandler}>
-              <h2>{isLoggin? "Log In" : "Register"}</h2>
+            <form className='FormInput' onSubmit={onSubmitFormInputHandler}>
+              <div className='formInputHeader'>
+                <h2>{isLoggin? "Log In" : "Register"}</h2>
+                <button type='button' className="fa-sharp fa-solid fa-xmark" onClick={closeModal}></button>
+              </div>
               <hr />
               <label htmlFor="inputEmail">Email :</label>
               <input type="text" id="inputEmail" ref={emailRef}/>
               <label htmlFor="inputPassword">Password :</label>
               <input type="password" id="inputPassword" ref={passwordRef} />
-              <div>
-                <button>{isLoggin? "Log In" : "Register"}</button>
+              <div className='divButton'>
+                <button ref={buttonref}>{isLoggin? "Log In" : "Register"}</button>
               </div>
             </form>
             
           </ModalComponent>,document.getElementById('modal-root'))
-          
+      }
+      {
+        modalAddStatus && createPortal(<ModalComponent closeModal={closeModal}>
+          <FormComponent typeOfModalAdd={typeOfModalAdd} editRecipe={editRecipe} AddRecipes={AddRecipes} closeModal={closeModal}/>
+        </ModalComponent>,document.getElementById('modal-root'))
       }
       <div className="App">
         <header className="App-header">
@@ -174,8 +289,7 @@ const OonSubmitFormInputHandler= async (e)=>{
             </div>
           </nav>
         </header>
-          <RecipeContainerComponent/>
-          <button onClick={refreshIngredients}>click</button>
+          <RecipeContainerComponent suprRecipe={suprRecipe} openModalAddHandler={openModalAddHandler}/>
       </div>
     </>
   );
