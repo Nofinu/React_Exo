@@ -65,7 +65,7 @@ export const FormComponent =(props)=>{
     <form className='formAddEdit' onSubmit={onSubmitFormHandler}>
       <div>
         <h2>{props.typeOfModalAdd === "Add"?"ajouter une recette":"Modifier une recettes"}</h2>
-        <button className="fa-sharp fa-solid fa-xmark" onClick={()=>props.closeModal()}></button>
+        <button type='button' className="fa-sharp fa-solid fa-xmark" onClick={()=>props.closeModal()}></button>
       </div>
       <label htmlFor="title">Nom de la recette :</label>
       <input className='inputFormAddEdit inputTmps' type="text" ref={titleRef} step={0.1} id="title" defaultValue={typeOfModal !== "Add" ? recipe.title:""}/>

@@ -18,23 +18,23 @@ const RecipeListSclice = createSlice({
     },
     addRecipeAction(state,actions){
       state.recipes.push(actions.payload)
-      state.recipes = state.recipes.sort((a,b)=>a.title-b.title)
+      state.recipes = state.recipes.sort((a,b)=>a.title.localeCompare(b.title) )
     },
     setRecipesAction(state,actions){
       state.recipes=[]
       actions.payload.forEach(recipe => {
         state.recipes.push(recipe)
       });
-      state.recipes = state.recipes.sort((a,b)=>a.title-b.title)
+      state.recipes = state.recipes.sort((a,b)=>a.title.localeCompare(b.title) )
     },
     editRecipesList(state,actions){
       state.recipes=[]
       state.recipes=actions.payload
-      state.recipes = state.recipes.sort((a,b)=>a.title-b.title)
+      state.recipes = state.recipes.sort((a,b)=>a.title.localeCompare(b.title) )
     },
     suprRecipesList(state,actions){
       state.recipes=actions.payload
-      state.recipes = state.recipes.sort((a,b)=>a.title-b.title)
+      state.recipes = state.recipes.sort((a,b)=>a.title.localeCompare(b.title) )
     }
 
   }
