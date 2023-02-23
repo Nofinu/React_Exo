@@ -276,7 +276,7 @@ const openModalAddHandler=(type)=>{
       <div className="App">
         <header className="App-header">
           <nav className='navbar'>
-            <h1>eRecipe</h1>
+            <h1 className="title"><i className='fa-solid fa-fire '></i> eRecipe</h1>
             <div>
               {
                 isLogged? <button onClick={LogOutHandler}>Log out</button>
