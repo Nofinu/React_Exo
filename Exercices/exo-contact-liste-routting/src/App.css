@@ -1,38 +1,68 @@
-.App {
-  text-align: center;
+header{
+  height: 80px;
+  background-color: rgb(17, 17, 17);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+header>nav{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: inherit;
+}
+header>nav>h2{
+  color: rgb(230, 228, 228);
+  margin: 0 15px 0 25px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.navlinkoff,.navlinkon{
+  text-decoration: none;
+  margin-right: 10px;
+  font-size: 16px;
+}
+.navlinkon{
+  color: rgb(230, 229, 229);
+  font-size: 18px;
+} 
+.navlinkoff{
+  color: rgb(95, 94, 94);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.navlinkoff:hover{
+  color: rgb(201, 198, 198);
+}
+
+
+.container{
+  background-color: rgb(22, 22, 22);
+  width: 50%;
+  margin: 20px auto;
+  color: rgb(240, 240, 240);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+
+.headerContactItem,.headerContactPage{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.contactItem{
+  border: solid rgb(15, 89, 107) 1px;
+  margin-top: 5px;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+form{
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+form>input{
+  margin-top: 5px;
+  margin-bottom: 10px;
 }
