@@ -12,7 +12,7 @@ export const ContactPage=()=>{
       <div className="headerContactPage">
         <h2>Contact List</h2>
         <div>
-          <Link to="/contacts/Add?mode=Add">Add</Link>
+          <Link className="Link Add"  to="/contacts/Add?mode=Add">Add</Link>
         </div>
       </div>
       <hr />

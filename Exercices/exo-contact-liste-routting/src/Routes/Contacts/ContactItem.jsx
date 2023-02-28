@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom"
 
 export const ContactItem =(props)=>{
   return(
@@ -6,8 +6,8 @@ export const ContactItem =(props)=>{
       <div className="headerContactItem">
         <div>{props.contact.firstName} {props.contact.lastName}</div>
         <div>
-          <button>edit</button>
-          <button>supr</button>
+        <Link className="Link Modif" to={`/contacts/${props.contact.id}?mode=Modif`}>Edit</Link>
+        <Link className="Link Supr"  to={`/contacts/${props.contact.id}?mode=Supr`}>Supr</Link>
         </div>
       </div>
       <hr />
@@ -19,3 +19,4 @@ export const ContactItem =(props)=>{
     </div>
   )
 }
+
